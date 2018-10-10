@@ -27,6 +27,26 @@ public class ChatBotRunner
 		{
 			//Use Logic to control which chatbot is handling the conversation\
 			//This example has only chatbot1
+			
+		while (!statement.equals("Bye")) {
+			//Use Logic to control which chatbot is handling the conversation\
+			//This example has only chatbot1
+			while (statement.toLowerCase().equals("instagram")) ;
+			{
+				chatbot1.chatLoop(statement);
+				statement = in.nextLine();
+			}
+			while (statement.toLowerCase().equals("facebook")) ;
+			{
+				chatbot2.chatLoop(statement);
+				statement = in.nextLine();
+			}
+			while (statement.toLowerCase().equals("snapchat")) ;
+			{
+				chatbot3.chatLoop(statement);
+				statement = in.nextLine();
+			}
+		}
 
 
 
