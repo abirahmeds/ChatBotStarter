@@ -19,7 +19,7 @@ public class ChatBotRunner
 		
 
 		Scanner in = new Scanner (System.in);
-		System.out.println("Welcome to the chatbot, nice to meet you.");
+		System.out.println("Welcome to the Social Media Chatbot, nice to meet you.");
 		String statement = in.nextLine();
 
 
