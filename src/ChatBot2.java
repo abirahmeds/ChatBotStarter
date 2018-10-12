@@ -72,6 +72,7 @@ public class ChatBot2
 			response = "Why?";
 			emotion++;
 		}
+
 		else if (findKeyword(statement, "It is fun") >= 0)
 		{
 			response = "Yes, it is fun!";
@@ -89,7 +90,7 @@ public class ChatBot2
 		}
 		else if (findKeyword(statement, "so what") >= 0)
 		{
-			response = "Why so rude?";
+			response = "Why are you being so rude?";
 			emotion--;
 		}
 		else if (findKeyword(statement, "interesting") >= 0)
@@ -112,6 +113,7 @@ public class ChatBot2
 			response = transformIWantStatement(statement);
 
 		}
+
 		else
 		{
 			response = getRandomResponse();
@@ -139,9 +141,9 @@ public class ChatBot2
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "because I", 0);
+		int psn = findKeyword (statement, "I love to", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
-		return "What do you do on " + restOfStatement + "?";
+		return "Why do you want to " + restOfStatement + "?";
 	}
 
 	
@@ -162,9 +164,9 @@ public class ChatBot2
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "favorite", 0);
-		String restOfStatement = statement.substring(psn + 8).trim();
-		return "What's your favorite part about " + restOfStatement + "?";
+		int psn = findKeyword (statement, "I want to", 0);
+		String restOfStatement = statement.substring(psn + 9).trim();
+		return "Why do you love to " + restOfStatement + "?";
 	}
 	
 	
