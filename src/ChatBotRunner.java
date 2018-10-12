@@ -5,62 +5,40 @@ import java.util.Scanner;
  * @author Brooklyn Tech CS Department
  * @version September 2018
  */
-public class ChatBotRunner
-{
+public class ChatBotRunner {
 
 	/**
 	 * Create instances of each chatbot, give it user input, and print its replies. Switch chatbot responses based on which chatbot the user is speaking too.
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		ChatBot1 chatbot1 = new ChatBot1();
 		ChatBot2 chatbot2 = new ChatBot2();
 		ChatBot3 chatbot3 = new ChatBot3();
-		
 
-		Scanner in = new Scanner (System.in);
-		System.out.println("Welcome to the Social Media Chatbot, nice to meet you.");
+
+		Scanner in = new Scanner(System.in);
+		System.out.println("Hi! I'm Social Media Chatbot!");
 		String statement = in.nextLine();
+		System.out.println("Which do you like best Instagram, Facebook, or Snapchat.");
+		statement = in.nextLine();
+
+		while (!statement.toLowerCase().equals("bye")) {
+			 {
+				while (statement.toLowerCase().equals("instagram")) {
+					chatbot1.chatLoop(statement);
+					statement = in.nextLine();
+				}
+				while (statement.toLowerCase().equals("facebook")) {
+					chatbot2.chatLoop(statement);
+					statement = in.nextLine();
+				}
+				while (statement.toLowerCase().equals("snapchat")) {
+					chatbot3.chatLoop(statement);
+					statement = in.nextLine();
+				}
 
 
-		while (!statement.equals("Bye"))
-		{
-			//Use Logic to control which chatbot is handling the conversation\
-			//This example has only chatbot1
-			
-		while (!statement.equals("Bye")) {
-			//Use Logic to control which chatbot is handling the conversation\
-			//This example has only chatbot1
-			while (statement.toLowerCase().equals("instagram")) ;
-			{
-				chatbot1.chatLoop(statement);
-				statement = in.nextLine();
 			}
-			while (statement.toLowerCase().equals("facebook")) ;
-			{
-				chatbot2.chatLoop(statement);
-				statement = in.nextLine();
-			}
-			while (statement.toLowerCase().equals("snapchat")) ;
-			{
-				chatbot3.chatLoop(statement);
-				statement = in.nextLine();
-			}
-		}
-
-
-
-			chatbot1.chatLoop(statement);
-			chatbot2.chatLoop(statement);
-			chatbot3.chatLoop(statement);
-
-
-
-
-			statement = in.nextLine();
-
-
 		}
 	}
-
 }
