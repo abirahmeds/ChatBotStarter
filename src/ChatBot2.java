@@ -41,7 +41,7 @@ public class ChatBot2
 	 */	
 	public String getGreeting()
 	{
-		return "";
+		return "Do you really like to use Facebook?";
 		
 	}
 	
@@ -55,41 +55,73 @@ public class ChatBot2
 	public String getResponse(String statement)
 	{
 		String response = "";
-		
+
 		if (statement.length() == 0)
 		{
-			response = "Say something, please.";
+			response = "Is anyone there...?";
 		}
 
 		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = "Why so negative?";
-                	emotion--;
-		}
-		
-		else if (findKeyword(statement, "levin") >= 0)
-		{
-			response = "More like LevinTheDream amiright?";
-			emotion++;
+			response = "Why not?";
+			emotion--;
 		}
 
+		else if (findKeyword(statement, "yes") >= 0)
+		{
+			response = "Why?";
+			emotion++;
+		}
+		else if (findKeyword(statement, "It is fun") >= 0)
+		{
+			response = "Yes, it is fun!";
+			emotion++;
+		}
+		else if (findKeyword(statement, "I don't like Facebook") >= 0)
+		{
+			response = "Really?";
+			emotion--;
+		}
+		else if (findKeyword(statement, "I don't care") >= 0)
+		{
+			response = "Why don't you care?";
+			emotion--;
+		}
+		else if (findKeyword(statement, "so what") >= 0)
+		{
+			response = "Why so rude?";
+			emotion--;
+		}
+		else if (findKeyword(statement, "interesting") >= 0)
+		{
+			response = "What's interesting about it";
+			emotion++;
+		}
+		else if (findKeyword(statement, "so what") >= 0)
+		{
+			response = "Why so rude?";
+			emotion--;
+		}
 		// Response transforming I want to statement
-		else if (findKeyword(statement, "I want to", 0) >= 0)
+		else if (findKeyword(statement, "I love to", 0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
 		}
-		else if (findKeyword(statement, "I want",0) >= 0)
+		else if (findKeyword(statement, "I want to",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
-		}	
+
+		}
 		else
 		{
 			response = getRandomResponse();
 		}
-		
+
 		return response;
 	}
-	
+
+
+
 	/**
 	 * Take a statement with "I want to <something>." and transform it into 
 	 * "Why do you want to <something>?"
@@ -107,9 +139,9 @@ public class ChatBot2
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "I like", 0);
-		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Why do you like " + restOfStatement + "?";
+		int psn = findKeyword (statement, "because I", 0);
+		String restOfStatement = statement.substring(psn + 9).trim();
+		return "What do you do on " + restOfStatement + "?";
 	}
 
 	
@@ -130,9 +162,9 @@ public class ChatBot2
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "", 0);
-		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + restOfStatement + "?";
+		int psn = findKeyword (statement, "favorite", 0);
+		String restOfStatement = statement.substring(psn + 8).trim();
+		return "What's your favorite part about " + restOfStatement + "?";
 	}
 	
 	
@@ -153,14 +185,14 @@ public class ChatBot2
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		
+
 		int psnOfI = findKeyword (statement, "I", 0);
 		int psnOfYou = findKeyword (statement, "you", psnOfI);
-		
+
 		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
 		return "Why do you " + restOfStatement + " me?";
 	}
-	
+
 
 	
 	
@@ -269,7 +301,7 @@ public class ChatBot2
 			"So, would you like to go for a walk?",
 			"Could you say that again?"
 	};
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
-	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+	private String [] randomAngryResponses = {"Why did you say you like Facebook then?!?", "Are you serious?!?", "What's wrong with you?"};
+	private String [] randomHappyResponses = {"Yay!", "I think so too!", "Of course!"};
 	
 }
