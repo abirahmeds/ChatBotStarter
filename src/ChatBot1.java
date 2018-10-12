@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-/**
+**
  * A program to carry on conversations with a human user.
  * This version:
  * @author Brooklyn Tech CS Department
@@ -40,7 +40,7 @@ public class ChatBot1
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Do you like posting pictures on Instagram?";
 	}
 	
 	/**
@@ -56,26 +56,26 @@ public class ChatBot1
 		
 		if (statement.length() == 0)
 		{
-			response = "Say something, please.";
+			response = "Bro, please talk to me.";
 		}
 
 		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = "Why so negative?";
+			response = "Why not, you can always add a filter :)";
                 	emotion--;
 		}
 		
-		else if (findKeyword(statement, "levin") >= 0)
+		else if (findKeyword(statement, "yes") >= 0)
 		{
-			response = "More like LevinTheDream, amiright?";
+			response = "Me too man, I post a lot of beach selfies.";
 			emotion++;
 		}
-		else if (findKeyword(statement, "folwell") >= 0)
+		else if (findKeyword(statement, "sometimes") >= 0)
 		{
-			response = "Watch your backpacks, Mr. Folwell doesn't fall well.";
+			response = "Why not more often?";
 			emotion++;
 		}
-		else if (findKeyword(statement, "goldman") >= 0)
+		else if (findKeyword(statement, "") >= 0)
 		{
 			response = "Go for the gold, man.";
 			emotion++;
@@ -89,7 +89,11 @@ public class ChatBot1
 		else if (findKeyword(statement, "I want",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
-		}	
+		}
+		else if (findKeyword(statement, "I want", 0) >= 0)
+		{
+			response = transformIYouStatement(statement);
+		}
 		else
 		{
 			response = getRandomResponse();
@@ -142,6 +146,8 @@ public class ChatBot1
 		String restOfStatement = statement.substring(psn + 6).trim();
 		return "Would you really be happy if you had " + restOfStatement + "?";
 	}
+
+
 	
 	
 	/**
@@ -188,7 +194,7 @@ public class ChatBot1
 	 * @return the index of the first occurrence of goal in
 	 *         statement or -1 if it's not found
 	 */
-	private int findKeyword(String statement, String goal,
+	public int findKeyword(String statement, String goal,
 			int startPos)
 	{
 		String phrase = statement.trim().toLowerCase();
@@ -275,9 +281,11 @@ public class ChatBot1
 			"You don't say.",
 			"It's all boolean to me.",
 			"So, would you like to go for a walk?",
-			"Could you say that again?"
+			"Could you say that again?",
+			"Oh really now?"
+
 	};
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
-	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+	private String [] randomAngryResponses = {"OVER 9 THOUSAND!!", "k", "NOW IM MAD!", "STOP!!", "Ok and?", "WOW, do you want a cookie?"};
+	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes.", "hehe", ":)"};
 	
 }
