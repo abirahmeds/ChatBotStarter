@@ -24,15 +24,15 @@ public class ChatBotRunner {
 
 		while (!statement.toLowerCase().equals("bye")) {
 			 {
-				while (statement.toLowerCase().equals("instagram")) {
+				while (findKeyword(statement, "instagram", 0)) {
 					chatbot1.chatLoop(statement);
 					statement = in.nextLine();
 				}
-				while (statement.toLowerCase().equals("facebook")) {
+				 while (findKeyword(statement, "facebook", 0)) {
 					chatbot2.chatLoop(statement);
 					statement = in.nextLine();
 				}
-				while (statement.toLowerCase().equals("snapchat")) {
+				 while (findKeyword(statement, "snapchat", 0)) {
 					chatbot3.chatLoop(statement);
 					statement = in.nextLine();
 				}
@@ -40,5 +40,52 @@ public class ChatBotRunner {
 
 			}
 		}
+	}
+	private static boolean findKeyword(String statement, String goal,
+							int startPos)
+	{
+		String phrase = statement.trim().toLowerCase();
+		goal = goal.toLowerCase();
+
+		// The only change to incorporate the startPos is in
+		// the line below
+		int psn = phrase.indexOf(goal, startPos);
+
+		// Refinement--make sure the goal isn't part of a
+		// word
+		while (psn >= 0)
+		{
+			// Find the string of length 1 before and after
+			// the word
+			String before = " ", after = " ";
+			if (psn > 0)
+			{
+				before = phrase.substring(psn - 1, psn);
+			}
+			if (psn + goal.length() < phrase.length())
+			{
+				after = phrase.substring(
+						psn + goal.length(),
+						psn + goal.length() + 1);
+			}
+
+			// If before and after aren't letters, we've
+			// found the word
+			if (((before.compareTo("a") < 0) || (before
+					.compareTo("z") > 0)) // before is not a
+					// letter
+					&& ((after.compareTo("a") < 0) || (after
+					.compareTo("z") > 0)))
+			{
+				return true;
+			}
+
+			// The last position didn't work, so let's find
+			// the next, if there is one.
+			psn = phrase.indexOf(goal, psn + 1);
+
+		}
+
+		return false;
 	}
 }
