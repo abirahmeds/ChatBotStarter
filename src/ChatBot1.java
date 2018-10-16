@@ -65,7 +65,11 @@ public class ChatBot1
 			response = "Why not, you can always add a filter :)";
                 	emotion--;
 		}
-
+		else if (findKeyword(statement, "k") >= 0)
+		{
+			response = "k.";
+			emotion--;
+		}
 		else if (findKeyword(statement, "yes") >= 0)
 		{
 			response = "Me too man, I post a lot of beach selfies.";
