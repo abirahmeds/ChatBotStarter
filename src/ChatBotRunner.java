@@ -24,34 +24,39 @@ public class ChatBotRunner {
 
 		while (!statement.toLowerCase().equals("bye")) {
 			{
-				while (findKeyword(statement, "instagram", 0)) {
+				if (findKeyword(statement, "instagram", 0)) {
 					chatbot1.chatLoop(statement);
 					statement = in.nextLine();
 				}
-				while (findKeyword(statement, "facebook", 0)) {
+				else if (findKeyword(statement, "facebook", 0)) {
 					chatbot2.chatLoop(statement);
 					statement = in.nextLine();
 				}
-				while (findKeyword(statement, "snapchat", 0)) {
+				else if  (findKeyword(statement, "snapchat", 0)) {
 					chatbot3.chatLoop(statement);
 					statement = in.nextLine();
 				}
-				while (findKeyword(statement, "myspace", 0)) {
+				else if (findKeyword(statement, "myspace", 0)) {
 					System.out.println("LOL, no one uses that anymore!");
 					chatbot1.chatLoop(statement);
 					statement = in.nextLine();
 
 				}
-				while (findKeyword(statement, "none", 0)) {
+				else if (findKeyword(statement, "none", 0)) {
 					System.out.println("C'mon you have to use something?!?");
 					chatbot2.chatLoop(statement);
 					statement = in.nextLine();
 				}
-				while (findKeyword(statement, "no", 0)) {
+				else if (findKeyword(statement, "no", 0)) {
 					System.out.println("C'mon you have to use something?!?");
 					chatbot1.chatLoop(statement);
 					statement = in.nextLine();
 				}
+				else {
+					System.out.println("C'mon you have to use something?!?");
+
+				}
+				statement = in.nextLine();
 			}
 		}
 	}
