@@ -28,7 +28,19 @@ public class ChatBotRunner {
 					chatbot1.chatLoop(statement);
 					statement = in.nextLine();
 				}
+				else if (findKeyword(statement, "insta", 0)) {
+					chatbot1.chatLoop(statement);
+					statement = in.nextLine();
+				}
+				else if (findKeyword(statement, "ig", 0)) {
+					chatbot1.chatLoop(statement);
+					statement = in.nextLine();
+				}
 				else if (findKeyword(statement, "facebook", 0)) {
+					chatbot2.chatLoop(statement);
+					statement = in.nextLine();
+				}
+				else if (findKeyword(statement, "fb", 0)) {
 					chatbot2.chatLoop(statement);
 					statement = in.nextLine();
 				}
@@ -38,18 +50,15 @@ public class ChatBotRunner {
 				}
 				else if (findKeyword(statement, "myspace", 0)) {
 					System.out.println("LOL, no one uses that anymore!");
-					chatbot1.chatLoop(statement);
 					statement = in.nextLine();
 
 				}
 				else if (findKeyword(statement, "none", 0)) {
 					System.out.println("C'mon you have to use something?!?");
-					chatbot2.chatLoop(statement);
 					statement = in.nextLine();
 				}
 				else if (findKeyword(statement, "no", 0)) {
 					System.out.println("C'mon you have to use something?!?");
-					chatbot1.chatLoop(statement);
 					statement = in.nextLine();
 				}
 				else {
