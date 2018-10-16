@@ -148,7 +148,7 @@ public class ChatBot2
 		}
 		int psn = findKeyword (statement, "I love to", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Why do you want to " + restOfStatement + "?";
+		return "Why do you love to " + restOfStatement + "?";
 	}
 
 	
@@ -171,7 +171,7 @@ public class ChatBot2
 		}
 		int psn = findKeyword (statement, "I want to", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Why do you love to " + restOfStatement + "?";
+		return "Why do you want to " + restOfStatement + "?";
 	}
 	private String transformIHateToStatement(String statement)
 	{
