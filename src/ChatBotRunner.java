@@ -53,7 +53,7 @@ public class ChatBotRunner {
 					statement = in.nextLine();
 				}
 				else {
-					System.out.println("C'mon you have to use something?!?");
+					System.out.println("INSTAGRAM, FACEBOOK, OR SNAPCHAT?!?");
 
 				}
 				statement = in.nextLine();
