@@ -331,7 +331,7 @@ public class ChatBot1
 			"Tell me more",
 			"Do you really think so?",
 			"You don't say.",
-			"Instagram was founed on October of 2010",
+			"Instagram was founded on October of 2010",
 			"Could you say that again?",
 			"Oh really now?",
 			"17% of teens say Instagram is the most important social media site.",
