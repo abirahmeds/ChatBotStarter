@@ -59,7 +59,11 @@ public class ChatBot1
 			response = "Bro, please talk to me.";
 			emotion--;
 		}
-
+		else if (findKeyword(statement, "yeah") >= 0)
+		{
+			response = "You are part of over a billion users.";
+			emotion--;
+		}
 		else if (findKeyword(statement, "no") >= 0)
 		{
 			response = "Why not, you can always add a filter :)";
@@ -70,9 +74,24 @@ public class ChatBot1
 			response = "k.";
 			emotion--;
 		}
+		else if (findKeyword(statement, "tell me a fact") >= 0)
+		{
+			response = "Pizza is the most Instagrammed food globally, followed by Sushi.";
+			emotion++;
+		}
 		else if (findKeyword(statement, "yes") >= 0)
 		{
 			response = "Me too man, I post a lot of beach selfies.";
+			emotion++;
+		}
+		else if (findKeyword(statement, "yea") >= 0)
+		{
+			response = "How many people like ur pictures?";
+			emotion++;
+		}
+		else if (findKeyword(statement, "ugly") >= 0)
+		{
+			response = "No you're not. I'll like your picture.";
 			emotion++;
 		}
 		else if (findKeyword(statement, "i don't know") >= 0)
@@ -105,9 +124,14 @@ public class ChatBot1
 		{
 			response = transformIWantStatement(statement);
 		}
-		else if (findKeyword(statement, "I want", 0) >= 0)
+		else if (findKeyword(statement, "I want you", 0) >= 0)
 		{
 			response = transformIYouStatement(statement);
+		}
+		else if (findKeyword(statement, "I hate",0) >= 0)
+		{
+			response = transformIHateToStatement(statement);
+
 		}
 		else
 		{
@@ -158,7 +182,7 @@ public class ChatBot1
 					.length() - 1);
 		}
 		int psn = findKeyword (statement, "I want", 0);
-		String restOfStatement = statement.substring(psn + 6).trim();
+		String restOfStatement = statement.substring(psn + 7).trim();
 		return "Would you really be happy if you had " + restOfStatement + "?";
 	}
 
@@ -190,6 +214,21 @@ public class ChatBot1
 		return "Why do you " + restOfStatement + " me?";
 	}
 
+	private String transformIHateToStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "I hate", 0);
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "Why do you hate " + restOfStatement + "?";
+	}
 
 
 
@@ -209,8 +248,7 @@ public class ChatBot1
 	 * @return the index of the first occurrence of goal in
 	 *         statement or -1 if it's not found
 	 */
-	public int findKeyword(String statement, String goal,
-			int startPos)
+	public int findKeyword(String statement, String goal, int startPos)
 	{
 		String phrase = statement.trim().toLowerCase();
 		goal = goal.toLowerCase();
@@ -271,7 +309,6 @@ public class ChatBot1
 	}
 
 
-
 	/**
 	 * Pick a default response to use if nothing else fits.
 	 * @return a non-committal string
@@ -291,13 +328,14 @@ public class ChatBot1
 	}
 
 	private String [] randomNeutralResponses = {"Interesting, tell me more",
-			"Hmmm.",
+			"Tell me more",
 			"Do you really think so?",
 			"You don't say.",
-			"It's all boolean to me.",
-			"So, would you like to go for a walk?",
+			"Instagram was founed on October of 2010",
 			"Could you say that again?",
-			"Oh really now?"
+			"Oh really now?",
+			"17% of teens say Instagram is the most important social media site.",
+			"Instagram influencers are charging up to $100,000 for a sponsored post.",
 
 	};
 	private String [] randomAngryResponses = {"A N G R Y","OVER 9 THOUSAND!!", "k", "NOW IM MAD!", "STOP!!", "Ok and?", "WOW, do you want a cookie?"};
