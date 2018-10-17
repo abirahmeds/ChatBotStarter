@@ -78,12 +78,27 @@ public class ChatBot2
 			response = "Yes, it is fun!";
 			emotion++;
 		}
+		else if (findKeyword(statement, "It's fun") >= 0)
+		{
+			response = "Yes, it is fun!";
+			emotion++;
+		}
 		else if (findKeyword(statement, "I don't like Facebook") >= 0)
 		{
 			response = "Really?";
 			emotion--;
 		}
+		else if (findKeyword(statement, "I dont like Facebook") >= 0)
+		{
+			response = "Really?";
+			emotion--;
+		}
 		else if (findKeyword(statement, "I don't care") >= 0)
+		{
+			response = "Why don't you care?";
+			emotion--;
+		}
+		else if (findKeyword(statement, "I dont care") >= 0)
 		{
 			response = "Why don't you care?";
 			emotion--;
@@ -98,11 +113,48 @@ public class ChatBot2
 			response = "What's interesting about it";
 			emotion++;
 		}
-		else if (findKeyword(statement, "so what") >= 0)
+		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = "Why so rude?";
+			response = "Why not, you can always add a filter :)";
 			emotion--;
 		}
+		else if (findKeyword(statement, "k") >= 0)
+		{
+			response = "k.";
+			emotion--;
+		}
+		else if (findKeyword(statement, "i don't know") >= 0)
+		{
+			response = "What do you mean????????";
+			emotion--;
+		}
+		else if (findKeyword(statement, "i dont know") >= 0)
+		{
+			response = "What do you mean????????";
+			emotion--;
+		}
+		else if (findKeyword(statement, "idk") >= 0)
+		{
+			response = "What do you mean????????";
+			emotion++;
+		}
+		else if (findKeyword(statement, "sometimes") >= 0)
+		{
+			response = "Why not more often?";
+			emotion++;
+		}
+		else if (findKeyword(statement, "maybe") >= 0)
+		{
+			response = "YES OR NO!!";
+			emotion--;
+		}
+		else if (findKeyword(statement, "i could") >= 0)
+		{
+			response = "YES OR NO!!";
+			emotion--;
+		}
+
+
 		// Response transforming I want to statement
 		else if (findKeyword(statement, "I love to", 0) >= 0)
 		{
@@ -114,6 +166,11 @@ public class ChatBot2
 
 		}
 		else if (findKeyword(statement, "I hate",0) >= 0)
+		{
+			response = transformIWantStatement(statement);
+
+		}
+		else if (findKeyword(statement, "I like",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
 
@@ -188,6 +245,22 @@ public class ChatBot2
 		String restOfStatement = statement.substring(psn + 6).trim();
 		return "Why do you hate " + restOfStatement + "?";
 	}
+	private String transformILikeToStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "I like", 0);
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "Why do you like " + restOfStatement + "?";
+	}
+	
 
 	
 	/**
