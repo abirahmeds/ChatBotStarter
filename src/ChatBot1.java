@@ -1,6 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
-
+//Abir Ahmed
 /**
  * A program to carry on conversations with a human user.
  * This version:
@@ -56,7 +56,7 @@ public class ChatBot1
 
 		if (statement.length() == 0)
 		{
-			response = "Bro, please talk to me.";
+			response = "Bro, please talk to me. Ask me to tell you a fact :)";
 			emotion--;
 		}
 		else if (findKeyword(statement, "yeah") >= 0)
@@ -69,12 +69,13 @@ public class ChatBot1
 		}
 		else if (findKeyword(statement, "yup") >= 0)
 		{
-			response = "";
+			response = "Right!?! Ask me to tell you a fun fact about this amazing platform.";
+			emotion++;
 		}
 		
 		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = "Why not, you can always add a filter :)";
+			response = "Why not? :(";
 		}
 		else if (findKeyword(statement, "k") >= 0)
 		{
@@ -83,22 +84,47 @@ public class ChatBot1
 		}
 		else if (findKeyword(statement, "tell me a fact") >= 0)
 		{
-			response = "Pizza is the most Instagrammed food globally, followed by Sushi.";
+			response = "Pizza is the most Instagrammed food globally, followed by Sushi. If you want another fact type in yer";
+			emotion++;
+		}
+		else if (findKeyword(statement, "yer") >= 0)
+		{
+			response = "More than 400 million people use Instagram each day. Type in yerr with two r's for another fact";
+			emotion++;
+		}
+		else if (findKeyword(statement, "yerr") >= 0)
+		{
+			response = "56 percent of Instagram users make $50,000/year or more.";
 			emotion++;
 		}
 		else if (findKeyword(statement, "yes") >= 0)
 		{
-			response = "Me too man, I post a lot of beach selfies.";
+			response = "Me too man, I post a lot of beach selfies. You should double-tap on them!";
 			emotion++;
 		}
 		else if (findKeyword(statement, "yea") >= 0)
 		{
-			response = "How many people like ur pictures?";
+			response = "Say yeahyeah if a lot of people like your pictures :). Say nono if they don't :(.";
+			emotion++;
+		}
+		else if (findKeyword(statement, "yeahyeah") >= 0)
+		{
+			response = "Wow, you must have a lot of clout. What's your username? Include the @ sign please.";
+			emotion++;
+		}
+		else if (findKeyword(statement, "nono") >= 0)
+		{
+			response = "Aww it's okay, I'll like your pictures. What's your username? Include the @ sign please.";
+			emotion++;
+		}
+		else if (findKeyword(statement, "@") >= 0)
+		{
+			response = "Nice name. I'll make sure to follow you.";
 			emotion++;
 		}
 		else if (findKeyword(statement, "ugly") >= 0)
 		{
-			response = "No you're not. I'll like your picture.";
+			response = "No you're not. Just add some filters if you think so. Always works :)";
 			emotion++;
 		}
 		else if (findKeyword(statement, "i dont know") >= 0)
