@@ -115,7 +115,7 @@ public class ChatBot1
 		else if (findKeyword(statement, "nono") >= 0)
 		{
 			response = "Aww it's okay, I'll like your pictures. What's your username? Include the @ sign please.";
-			emotion++;
+			emotion--;
 		}
 		else if (findKeyword(statement, "@") >= 0)
 		{
@@ -125,7 +125,7 @@ public class ChatBot1
 		else if (findKeyword(statement, "ugly") >= 0)
 		{
 			response = "No you're not. Just add some filters if you think so. Always works :)";
-			emotion++;
+			emotion--;
 		}
 		else if (findKeyword(statement, "i dont know") >= 0)
 		{
@@ -140,12 +140,12 @@ public class ChatBot1
 		else if (findKeyword(statement, "idk") >= 0)
 		{
 			response = "What do you mean????????";
-			emotion++;
+			emotion--;
 		}
 		else if (findKeyword(statement, "sometimes") >= 0)
 		{
 			response = "Why not more often?";
-			emotion++;
+			emotion--;
 		}
 		else if (findKeyword(statement, "maybe") >= 0)
 		{
@@ -169,6 +169,7 @@ public class ChatBot1
 		else if (findKeyword(statement, "I hate",0) >= 0)
 		{
 			response = transformIHateToStatement(statement);
+			emotion--;
 
 		}
 		else if (findKeyword(statement, "because",0) >= 0)
