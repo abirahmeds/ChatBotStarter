@@ -12,8 +12,6 @@ public class ChatBot3
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
 
-
-
 	/**
 	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
 	 * @param statement the statement typed by the user
@@ -37,17 +35,17 @@ public class ChatBot3
 
 	}
 	/**
-	 * Get a default greeting 	
+	 * Get a default greeting
 	 * @return a greeting
-	 */	
+	 */
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Do you use Snapchat all the time?";
 	}
-	
+
 	/**
 	 * Gives a response to a user statement
-	 * 
+	 *
 	 * @param statement
 	 *            the user statement
 	 * @return a response based on the rules given
@@ -55,22 +53,83 @@ public class ChatBot3
 	public String getResponse(String statement)
 	{
 		String response = "";
-		
+
 		if (statement.length() == 0)
 		{
-			response = "Say something, please.";
+			response = "Please say something.";
+			emotion--;
+		}
+		else if (findKeyword(statement, "yeah") >= 0)
+		{
+			response = "Me too. Over 400 million snapchat stories are shared everyday";
+		}
+		else if (findKeyword(statement, "what") >= 0)
+		{
+			response = "Do you streak with other people often? Say yup if you do.";
+		}
+		else if (findKeyword(statement, "yup") >= 0)
+		{
+			response = "As of May 15th 2018, the longest Snapchat streak is 1,120 snaps. Say wow if you think that is long?";
 		}
 
 		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = "Why so negative?";
-                	emotion--;
+			response = "Why? Snapchat is a fun way to share your everyday activites with friends.";
 		}
-		
-		else if (findKeyword(statement, "levin") >= 0)
+		else if (findKeyword(statement, "tell me a fact") >= 0)
 		{
-			response = "More like LevinTheDream amiright?";
+			response = "Drinks are the most snapchatted item in the world.";
 			emotion++;
+		}
+		else if (findKeyword(statement, "yer") >= 0)
+		{
+			response = "528k snaps are sent every minute. Type in yerr with two r's for another fact";
+			emotion++;
+		}
+		else if (findKeyword(statement, "yerr") >= 0)
+		{
+			response = "Snapchat has 187m active daily users.";
+			emotion++;
+		}
+		else if (findKeyword(statement, "yes") >= 0)
+		{
+			response = "Me too man, I snapchat everything I do.";
+			emotion++;
+		}
+		else if (findKeyword(statement, "yea") >= 0)
+		{
+			response = "Me too. I spend so much time on it. On average, people spend 34.5 minutes per day on Snapchat and send 34.1 message a day.";
+			emotion++;
+		}
+		else if (findKeyword(statement, "ugly") >= 0)
+		{
+			response = "No you're not. Just add a snapchat filter for more confidence.";
+			emotion++;
+		}
+		else if (findKeyword(statement, "i dont know") >= 0)
+		{
+			response = "What do you mean????????";
+			emotion--;
+		}
+		else if (findKeyword(statement, "i don't know") >= 0)
+		{
+			response = "What do you mean????????";
+			emotion--;
+		}
+		else if (findKeyword(statement, "idk") >= 0)
+		{
+			response = "What do you mean????????";
+			emotion++;
+		}
+		else if (findKeyword(statement, "sometimes") >= 0)
+		{
+			response = "Why not more often?";
+			emotion++;
+		}
+		else if (findKeyword(statement, "maybe") >= 0)
+		{
+			response = "YES OR NO!!";
+			emotion--;
 		}
 
 		// Response transforming I want to statement
@@ -81,17 +140,31 @@ public class ChatBot3
 		else if (findKeyword(statement, "I want",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
-		}	
+		}
+		else if (findKeyword(statement, "I want you", 0) >= 0)
+		{
+			response = transformIYouStatement(statement);
+		}
+		else if (findKeyword(statement, "I hate",0) >= 0)
+		{
+			response = transformIHateToStatement(statement);
+
+		}
+		else if (findKeyword(statement, "because",0) >= 0)
+		{
+			response = transformBecauseStatement(statement);
+
+		}
 		else
 		{
 			response = getRandomResponse();
 		}
-		
+
 		return response;
 	}
-	
+
 	/**
-	 * Take a statement with "I want to <something>." and transform it into 
+	 * Take a statement with "I want to <something>." and transform it into
 	 * "Why do you want to <something>?"
 	 * @param statement the user statement, assumed to contain "I want to"
 	 * @return the transformed statement
@@ -112,9 +185,9 @@ public class ChatBot3
 		return "Why do you want to " + restOfStatement + "?";
 	}
 
-	
+
 	/**
-	 * Take a statement with "I want <something>." and transform it into 
+	 * Take a statement with "I want <something>." and transform it into
 	 * "Would you really be happy if you had <something>?"
 	 * @param statement the user statement, assumed to contain "I want"
 	 * @return the transformed statement
@@ -131,13 +204,15 @@ public class ChatBot3
 					.length() - 1);
 		}
 		int psn = findKeyword (statement, "I want", 0);
-		String restOfStatement = statement.substring(psn + 6).trim();
+		String restOfStatement = statement.substring(psn + 7).trim();
 		return "Would you really be happy if you had " + restOfStatement + "?";
 	}
-	
-	
+
+
+
+
 	/**
-	 * Take a statement with "I <something> you" and transform it into 
+	 * Take a statement with "I <something> you" and transform it into
 	 * "Why do you <something> me?"
 	 * @param statement the user statement, assumed to contain "I" followed by "you"
 	 * @return the transformed statement
@@ -153,17 +228,47 @@ public class ChatBot3
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		
+
 		int psnOfI = findKeyword (statement, "I", 0);
 		int psnOfYou = findKeyword (statement, "you", psnOfI);
-		
+
 		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
 		return "Why do you " + restOfStatement + " me?";
 	}
-	
 
-	
-	
+	private String transformIHateToStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "I hate", 0);
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "Why do you hate " + restOfStatement + "?";
+	}
+
+
+	private String transformBecauseStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "because", 0);
+		String restOfStatement = statement.substring(psn + 7).trim();
+		return "Why do you think that " + restOfStatement + "?";
+	}
+
 	/**
 	 * Search for one word in phrase. The search is not case
 	 * sensitive. This method will check that the given goal
@@ -180,8 +285,7 @@ public class ChatBot3
 	 * @return the index of the first occurrence of goal in
 	 *         statement or -1 if it's not found
 	 */
-	private int findKeyword(String statement, String goal,
-			int startPos)
+	public int findKeyword(String statement, String goal, int startPos)
 	{
 		String phrase = statement.trim().toLowerCase();
 		goal = goal.toLowerCase();
@@ -212,9 +316,9 @@ public class ChatBot3
 			// found the word
 			if (((before.compareTo("a") < 0) || (before
 					.compareTo("z") > 0)) // before is not a
-											// letter
+					// letter
 					&& ((after.compareTo("a") < 0) || (after
-							.compareTo("z") > 0)))
+					.compareTo("z") > 0)))
 			{
 				return psn;
 			}
@@ -227,11 +331,11 @@ public class ChatBot3
 
 		return -1;
 	}
-	
+
 	/**
 	 * Search for one word in phrase.  The search is not case sensitive.
 	 * This method will check that the given goal is not a substring of a longer string
-	 * (so, for example, "I know" does not contain "no").  The search begins at the beginning of the string.  
+	 * (so, for example, "I know" does not contain "no").  The search begins at the beginning of the string.
 	 * @param statement the string to search
 	 * @param goal the string to search for
 	 * @return the index of the first occurrence of goal in statement or -1 if it's not found
@@ -240,7 +344,6 @@ public class ChatBot3
 	{
 		return findKeyword (statement, goal, 0);
 	}
-	
 
 
 	/**
@@ -251,25 +354,27 @@ public class ChatBot3
 	{
 		Random r = new Random ();
 		if (emotion == 0)
-		{	
+		{
 			return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
 		}
 		if (emotion < 0)
-		{	
+		{
 			return randomAngryResponses [r.nextInt(randomAngryResponses.length)];
-		}	
+		}
 		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
 	}
-	
+
 	private String [] randomNeutralResponses = {"Interesting, tell me more",
-			"Hmmm.",
+			"Tell me more",
 			"Do you really think so?",
-			"You don't say.",
-			"It's all boolean to me.",
-			"So, would you like to go for a walk?",
-			"Could you say that again?"
+			"Snapchat was founded on September 16, 2011.",
+			"Could you say that again?",
+			"Oh really now?",
+			"Did you know that Snapchat was once called as Picaboo as an iOS-only app? Picaboo was renamed as Snapchat in 2012",
+			"The recent statistics shows that most of the Snapchat users send the photo to somebody else of their drinks",
+
 	};
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
-	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
-	
+	private String [] randomAngryResponses = {"A N G R Y","I'm gonna block you from viewing my story", "k", "NOW IM MAD!", "STOP!!", "Ok and?"};
+	private String [] randomHappyResponses = {"H A P P Y", "YAY", "WOOHOOO", "I will add you on Snapchat if you streak with me", ":)"};
+
 }
