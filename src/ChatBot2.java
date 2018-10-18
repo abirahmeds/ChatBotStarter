@@ -128,10 +128,20 @@ public class ChatBot2
 			response = "What do you mean????????";
 			emotion--;
 		}
-		else if (findKeyword(statement, "i dont know") >= 0)
+		else if (findKeyword(statement, "because i dont") >= 0)
 		{
 			response = "What do you mean????????";
 			emotion--;
+		}
+		else if (findKeyword(statement, "because i don't") >= 0)
+		{
+			response = "What do you mean????????";
+			emotion--;
+		}
+		else if (findKeyword(statement, "because i do") >= 0)
+		{
+			response = "That's really interesting";
+			emotion++;
 		}
 		else if (findKeyword(statement, "idk") >= 0)
 		{
@@ -389,14 +399,11 @@ public class ChatBot2
 	}
 	
 	private String [] randomNeutralResponses = {"Interesting, tell me more",
-			"Tell me more",
-			"Do you really think so?",
-			"You don't say.",
-			"Facebook was founded on February of 2004",
-			"Could you say that again?",
-			"Oh really now?",
-			"Facebook is the most popular social media",
-			"Instagram influencers are charging up to $100,000 for a sponsored post.",
+			"Did you know that: Facebook was founded on February of 2004. Now tell me something else?",
+			"Did you know that: You can't block Mark Zuckerberg on Facebook. Now tell me something else?",
+			"Did you know that: Facebook has been blocked in China since 2009. Now tell me something else?",
+			"Did you know that: Facebook is the most popular social media. Now tell me something else?",
+			"Did you know that: Nearly 73% of Facebook’s ad revenue comes from mobile advertising. Now tell me something else?\n",
 
 	};
 	private String [] randomAngryResponses = {"Why did you say you like Facebook then?!?", "Are you serious?!?", "What's wrong with you?"};
