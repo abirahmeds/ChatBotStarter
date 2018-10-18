@@ -389,12 +389,15 @@ public class ChatBot2
 	}
 	
 	private String [] randomNeutralResponses = {"Interesting, tell me more",
-			"Hmmm.",
+			"Tell me more",
 			"Do you really think so?",
 			"You don't say.",
-			"It's all boolean to me.",
-			"So, would you like to go for a walk?",
-			"Could you say that again?"
+			"Facebook was founded on February of 2004",
+			"Could you say that again?",
+			"Oh really now?",
+			"Facebook is the most popular social media",
+			"Instagram influencers are charging up to $100,000 for a sponsored post.",
+
 	};
 	private String [] randomAngryResponses = {"Why did you say you like Facebook then?!?", "Are you serious?!?", "What's wrong with you?"};
 	private String [] randomHappyResponses = {"Yay!", "I think so too!", "Of course!"};
