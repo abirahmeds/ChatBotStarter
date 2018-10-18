@@ -61,13 +61,20 @@ public class ChatBot1
 		}
 		else if (findKeyword(statement, "yeah") >= 0)
 		{
-			response = "You are part of over a billion users.";
-			emotion--;
+			response = "You are part of over a billion users. Do you post often?";
 		}
+		else if (findKeyword(statement, "what") >= 0)
+		{
+			response = "I said Instagram is the best social media site. Say yup if you think so!";
+		}
+		else if (findKeyword(statement, "yup") >= 0)
+		{
+			response = "";
+		}
+		
 		else if (findKeyword(statement, "no") >= 0)
 		{
 			response = "Why not, you can always add a filter :)";
-                	emotion--;
 		}
 		else if (findKeyword(statement, "k") >= 0)
 		{
@@ -93,6 +100,11 @@ public class ChatBot1
 		{
 			response = "No you're not. I'll like your picture.";
 			emotion++;
+		}
+		else if (findKeyword(statement, "i dont know") >= 0)
+		{
+			response = "What do you mean????????";
+			emotion--;
 		}
 		else if (findKeyword(statement, "i don't know") >= 0)
 		{
@@ -131,6 +143,11 @@ public class ChatBot1
 		else if (findKeyword(statement, "I hate",0) >= 0)
 		{
 			response = transformIHateToStatement(statement);
+
+		}
+		else if (findKeyword(statement, "because",0) >= 0)
+		{
+			response = transformBecauseStatement(statement);
 
 		}
 		else
@@ -231,6 +248,21 @@ public class ChatBot1
 	}
 
 
+	private String transformBecauseStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "because", 0);
+		String restOfStatement = statement.substring(psn + 7).trim();
+		return "Why do you think that " + restOfStatement + "?";
+	}
 
 	/**
 	 * Search for one word in phrase. The search is not case
@@ -330,15 +362,14 @@ public class ChatBot1
 	private String [] randomNeutralResponses = {"Interesting, tell me more",
 			"Tell me more",
 			"Do you really think so?",
-			"You don't say.",
-			"Instagram was founded on October of 2010",
+			"Did you know Instagram was founded on October of 2010",
 			"Could you say that again?",
 			"Oh really now?",
 			"17% of teens say Instagram is the most important social media site.",
-			"Instagram influencers are charging up to $100,000 for a sponsored post.",
+			"Instagram influencers are charging up to $100,000 for a sponsored post. Have you heard of this?",
 
 	};
-	private String [] randomAngryResponses = {"A N G R Y","OVER 9 THOUSAND!!", "k", "NOW IM MAD!", "STOP!!", "Ok and?", "WOW, do you want a cookie?"};
-	private String [] randomHappyResponses = {"H A P P Y", "YAY", "WOOHOOO", "You make me feel like a fresh cheesecake.", "hehe", ":)"};
+	private String [] randomAngryResponses = {"A N G R Y","I'm not gonna follow your profile", "k", "NOW IM MAD!", "STOP!!", "Ok and?"};
+	private String [] randomHappyResponses = {"H A P P Y", "YAY", "WOOHOOO", "I will follow you if you follow back", "I'm gonna like all your pictures", ":)"};
 
 }
