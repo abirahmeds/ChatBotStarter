@@ -71,7 +71,14 @@ public class ChatBot3
 		{
 			response = "As of May 15th 2018, the longest Snapchat streak is 1,120 snaps. Say wow if you think that is long?";
 		}
-
+		else if (findKeyword(statement, "wow") >= 0)
+		{
+			response = "I KNOW RIGHT! Say yuh if you use snapchat filters";
+		}
+		else if (findKeyword(statement, "yuh") >= 0)
+		{
+			response = "Filters are so fun. My favorite is the puppy face one. What's your favorite one?";
+		}
 		else if (findKeyword(statement, "no") >= 0)
 		{
 			response = "Why? Snapchat is a fun way to share your everyday activites with friends.";
@@ -130,6 +137,16 @@ public class ChatBot3
 		{
 			response = "YES OR NO!!";
 			emotion--;
+		}
+		else if (findKeyword(statement, "shut up") >= 0)
+		{
+			System.out.println("I didn't want to talk to you anyways.");
+			System.exit(1);
+		}
+		else if (findKeyword(statement, "go away") >= 0)
+		{
+			System.out.println("I didn't want to talk to you anyways.");
+			System.exit(1);
 		}
 
 		// Response transforming I want to statement
