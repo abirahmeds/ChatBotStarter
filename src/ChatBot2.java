@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
+// Facebook Chat made by James Ko
 /**
  * A program to carry on conversations with a human user.
  * This version:
@@ -83,22 +84,26 @@ public class ChatBot2
 			response = "Yes, it is fun!";
 			emotion++;
 		}
-		else if (findKeyword(statement, "I don't like Facebook") >= 0)
+		else if (findKeyword(statement, "i don't like Facebook") >= 0)
 		{
 			response = "Really?";
 			emotion--;
 		}
-		else if (findKeyword(statement, "I dont like Facebook") >= 0)
-		{
+		else if (findKeyword(statement, "I dont like Facebook") >= 0) {
 			response = "Really?";
 			emotion--;
 		}
-		else if (findKeyword(statement, "I don't care") >= 0)
+		else if (findKeyword(statement, "im bored") >= 0)
+		{
+			System.out.println("I'm bored of you too. GOODBYE");
+			System.exit(1);
+		}
+		else if (findKeyword(statement, "i don't care") >= 0)
 		{
 			response = "Why don't you care?";
 			emotion--;
 		}
-		else if (findKeyword(statement, "I dont care") >= 0)
+		else if (findKeyword(statement, "i dont care") >= 0)
 		{
 			response = "Why don't you care?";
 			emotion--;
@@ -107,6 +112,16 @@ public class ChatBot2
 		{
 			response = "Why are you being so rude?";
 			emotion--;
+		}
+		else if (findKeyword(statement, "shut up") >= 0)
+		{
+			System.out.println("I didn't want to talk to you anyways.");
+			System.exit(1);
+		}
+		else if (findKeyword(statement, "go away") >= 0)
+		{
+			System.out.println("I didn't want to talk to you anyways.");
+			System.exit(1);
 		}
 		else if (findKeyword(statement, "interesting") >= 0)
 		{
@@ -140,7 +155,12 @@ public class ChatBot2
 		}
 		else if (findKeyword(statement, "because i do") >= 0)
 		{
-			response = "That's really interesting";
+			response = "So what do you do on Facebook?";
+			emotion++;
+		}
+		else if (findKeyword(statement, "because i do") >= 0)
+		{
+			response = "So what do you do on Facebook?";
 			emotion++;
 		}
 		else if (findKeyword(statement, "idk") >= 0)
@@ -168,7 +188,7 @@ public class ChatBot2
 		// Response transforming I want to statement
 		else if (findKeyword(statement, "I love to", 0) >= 0)
 		{
-			response = transformIWantToStatement(statement);
+			response = transformILoveToStatement(statement);
 		}
 		else if (findKeyword(statement, "I want to",0) >= 0)
 		{
@@ -177,12 +197,17 @@ public class ChatBot2
 		}
 		else if (findKeyword(statement, "I hate",0) >= 0)
 		{
-			response = transformIWantStatement(statement);
+			response = transformIHateToStatement(statement);
 
 		}
 		else if (findKeyword(statement, "I like",0) >= 0)
 		{
-			response = transformIWantStatement(statement);
+			response = transformILikeToStatement(statement);
+
+		}
+		else if (findKeyword(statement, "because",0) >= 0)
+		{
+			response = transformBecauseToStatement(statement);
 
 		}
 
@@ -202,7 +227,7 @@ public class ChatBot2
 	 * @param statement the user statement, assumed to contain "I want to"
 	 * @return the transformed statement
 	 */
-	private String transformIWantToStatement(String statement)
+	private String transformILoveToStatement(String statement)
 	{
 		//  Remove the final period, if there is one
 		statement = statement.trim();
@@ -269,6 +294,21 @@ public class ChatBot2
 		int psn = findKeyword (statement, "I like", 0);
 		String restOfStatement = statement.substring(psn + 6).trim();
 		return "Why do you like " + restOfStatement + "?";
+	}
+	private String transformBecauseToStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "because", 0);
+		String restOfStatement = statement.substring(psn + 7).trim();
+		return "Is there anything else you do besides " + restOfStatement + "?";
 	}
 	
 
@@ -398,15 +438,16 @@ public class ChatBot2
 		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
 	}
 	
-	private String [] randomNeutralResponses = {"Interesting, tell me more",
+	private String [] randomNeutralResponses = {
 			"Did you know that: Facebook was founded on February of 2004. Now tell me something else?",
 			"Did you know that: You can't block Mark Zuckerberg on Facebook. Now tell me something else?",
 			"Did you know that: Facebook has been blocked in China since 2009. Now tell me something else?",
 			"Did you know that: Facebook is the most popular social media. Now tell me something else?",
+			"Did you know that: You can change your language on Facebook to Pirate. Now tell me something else?",
 			"Did you know that: Nearly 73% of Facebook’s ad revenue comes from mobile advertising. Now tell me something else?\n",
 
 	};
-	private String [] randomAngryResponses = {"Why did you say you like Facebook then?!?", "Are you serious?!?", "What's wrong with you?"};
-	private String [] randomHappyResponses = {"Yay!", "I think so too!", "Of course!"};
+	private String [] randomAngryResponses = {"Why did you say you like Facebook then?!?", "Are you serious?!?", "What's wrong with you?","Why did you choose this bot....?"};
+	private String [] randomHappyResponses = {"Yay!", "I think so too!", "Of course!", "Who wouldn't love that?","Isn't Facebook wonderful?"};
 	
 }
