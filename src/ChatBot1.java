@@ -61,7 +61,7 @@ public class ChatBot1
 		}
 		else if (findKeyword(statement, "yeah") >= 0)
 		{
-			response = "You are part of over a billion users. Do you post often?";
+			response = "You are part of over a billion users. Do you post often? Say yes if you do";
 		}
 		else if (findKeyword(statement, "what") >= 0)
 		{
@@ -115,9 +115,8 @@ public class ChatBot1
 		else if (findKeyword(statement, "nono") >= 0)
 		{
 			response = "Aww it's okay, I'll like your pictures. What's your username? Include the @ sign please.";
-			emotion--;
 		}
-		else if (findKeyword(statement, "@") >= 0)
+		else if (statement.indexOf("@") >= 0)
 		{
 			response = "Nice name. I'll make sure to follow you.";
 			emotion++;
@@ -125,7 +124,6 @@ public class ChatBot1
 		else if (findKeyword(statement, "ugly") >= 0)
 		{
 			response = "No you're not. Just add some filters if you think so. Always works :)";
-			emotion--;
 		}
 		else if (findKeyword(statement, "i dont know") >= 0)
 		{
@@ -145,14 +143,22 @@ public class ChatBot1
 		else if (findKeyword(statement, "sometimes") >= 0)
 		{
 			response = "Why not more often?";
-			emotion--;
 		}
 		else if (findKeyword(statement, "maybe") >= 0)
 		{
 			response = "YES OR NO!!";
 			emotion--;
 		}
-
+		else if (findKeyword(statement, "shut up") >= 0)
+		{
+			System.out.println("I didn't want to talk to you anyways.");
+			System.exit(1);
+		}
+		else if (findKeyword(statement, "go away") >= 0)
+		{
+			System.out.println("I didn't want to talk to you anyways.");
+			System.exit(1);
+		}
 		// Response transforming I want to statement
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
@@ -175,6 +181,11 @@ public class ChatBot1
 		else if (findKeyword(statement, "because",0) >= 0)
 		{
 			response = transformBecauseStatement(statement);
+
+		}
+		else if (findKeyword(statement, "i don't",0) >= 0)
+		{
+			response = transformIDontStatement(statement);
 
 		}
 		else
@@ -289,6 +300,21 @@ public class ChatBot1
 		int psn = findKeyword (statement, "because", 0);
 		String restOfStatement = statement.substring(psn + 7).trim();
 		return "Why do you think that " + restOfStatement + "?";
+	}
+	private String transformIDontStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "i don't", 0);
+		String restOfStatement = statement.substring(psn + 7).trim();
+		return "Why don't you " + restOfStatement + "?";
 	}
 
 	/**
