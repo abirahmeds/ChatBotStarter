@@ -36,6 +36,7 @@ public class ChatBot2
 		}
 
 	}
+	
 	/**
 	 * Get a default greeting 	
 	 * @return a greeting
@@ -98,6 +99,11 @@ public class ChatBot2
 			System.out.println("I'm bored of you too. GOODBYE");
 			System.exit(1);
 		}
+		else if (findKeyword(statement, "you suck") >= 0)
+		{
+			System.out.println("YOU SUCK. GOODBYE");
+			System.exit(1);
+		}
 		else if (findKeyword(statement, "i don't care") >= 0)
 		{
 			response = "Why don't you care?";
@@ -106,12 +112,22 @@ public class ChatBot2
 		else if (findKeyword(statement, "i dont care") >= 0)
 		{
 			response = "Why don't you care?";
-			emotion--;
 		}
 		else if (findKeyword(statement, "so what") >= 0)
 		{
 			response = "Why are you being so rude?";
-			emotion--;
+		}
+		else if (findKeyword(statement, "yea") >= 0)
+		{
+			response = "Say yeahyeah if a lot of people like your pictures :). Say nono if they don't :(.";
+		}
+		else if (findKeyword(statement, "yeahyeah") >= 0)
+		{
+			response = "Wow, you must have a lot of clout. What's your username? Include the @ sign please.";
+		}
+		else if (findKeyword(statement, "nono") >= 0)
+		{
+			response = "Aww it's okay, I'll like your pictures. What's your username? Include the @ sign please.";
 		}
 		else if (findKeyword(statement, "shut up") >= 0)
 		{
@@ -161,6 +177,21 @@ public class ChatBot2
 		else if (findKeyword(statement, "because i do") >= 0)
 		{
 			response = "So what do you do on Facebook?";
+			emotion++;
+		}
+		else if (findKeyword(statement, "tell me a fact") >= 0)
+		{
+			response = "There are about 30 million dead people on Facebook. Type yer for another fact";
+			emotion++;
+		}
+		else if (findKeyword(statement, "yer") >= 0)
+		{
+			response = "So many Facebook photos and videos are uploaded via mobile that it takes up 27% of upstream web traffic. Type in yerr with two r's for another fact";
+			emotion++;
+		}
+		else if (findKeyword(statement, "yerr") >= 0)
+		{
+			response = "Facebook's founder Mark Zuckerberg donated US$1 billion to charity in 2013, making him the biggest charitable donor in the U.S. Those were really hard to come up with.";
 			emotion++;
 		}
 		else if (findKeyword(statement, "idk") >= 0)
@@ -447,7 +478,7 @@ public class ChatBot2
 			"Did you know that: Nearly 73% of Facebook’s ad revenue comes from mobile advertising. Now tell me something else?\n",
 
 	};
-	private String [] randomAngryResponses = {"Why did you say you like Facebook then?!?", "Are you serious?!?", "What's wrong with you?","Why did you choose this bot....?"};
+	private String [] randomAngryResponses = {"Why did you say you like Facebook then?!?","I'm not gonna give you a friend request","Are you serious?!?", "What's wrong with you?","Why did you choose this bot....?", "Do you even want to be here?", "Did you just tell me to shut up?","What are you even talking about?","Are we even speaking the same language?","You're so incompetent?",""};
 	private String [] randomHappyResponses = {"Yay!", "I think so too!", "Of course!", "Who wouldn't love that?","Isn't Facebook wonderful?"};
 	
 }
