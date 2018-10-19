@@ -40,7 +40,7 @@ public class ChatBot1
 	 */
 	public String getGreeting()
 	{
-		return "Do you like posting pictures on Instagram?";
+		return "Do you like posting pictures on Instagram? Say yeah if you do.";
 	}
 
 	/**
